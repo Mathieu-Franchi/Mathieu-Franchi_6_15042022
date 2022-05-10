@@ -35,6 +35,7 @@ const errorHandler = error => {
   }
 };
 
+//on récupère l'application express importé auparavant 
 const server = http.createServer(app);
 
 server.on('error', errorHandler);
