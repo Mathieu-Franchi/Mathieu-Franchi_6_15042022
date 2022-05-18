@@ -58,4 +58,7 @@ module.exports = app;
 =======
 //on exporte l'app pour y accéder depuis les autres fichier du projet
 module.exports = app;
+<<<<<<< HEAD
+>>>>>>> adbc15c9ecc07d458bf5e5e818f0cac8d28de80c
+=======
 >>>>>>> adbc15c9ecc07d458bf5e5e818f0cac8d28de80c
