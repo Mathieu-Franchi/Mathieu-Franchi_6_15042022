@@ -12,6 +12,7 @@ const normalizePort = val => {
   }
   return false;
 };
+//on dit sur quel port on utilise pour le serveur
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 

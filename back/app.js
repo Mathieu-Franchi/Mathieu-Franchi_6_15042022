@@ -1,21 +1,35 @@
 // On importe express
 const express = require('express');
-
 // On creer l'application à l'aide d'express
 const app = express();
 
-// middleware qui intercepte toutes les requêtes qui contiennent du JSON pour le mettre dans req.body
-app.use(express.json());
+const mongoose = require('mongoose');
+
+// alternative à express.json
+// const bodyParser = require('body-parser'); 
+
+const sauceRoutes = require('./routes/sauce');
+const userRoutes = require('./routes/user');
 
 /* MONGODB */
+<<<<<<< HEAD
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+=======
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://Mathieu:M4815162342@cluster0.delpt.mongodb.net/Cluster0?retryWrites=true&w=majority";
+
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
   const collection = client.db("Cluster0").collection("piquante");
   // perform actions on the collection object
   client.close();
 });
+>>>>>>> adbc15c9ecc07d458bf5e5e818f0cac8d28de80c
 //Middleware  : réponse pour n'importe quelle requête
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -23,35 +37,25 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
 });
-//réponse pour requête de type post
-app.post('/api/sauces', (req, res, next) => {
-  console.log(req.body);
-  res.status(201).json({
-    message: 'Objet créé !'
-  });
-});
-//réponse pour requête de type get
-app.get('/api/sauces', (req, res, next) => {
-  const sauces = [
-    {
-      _id: 'oeihfzeoi',
-      title: 'Mon premier objet',
-      description: 'Les infos de mon premier objet',
-      imageUrl: 'https://cdn.pixabay.com/photo/2019/06/11/18/56/camera-4267692_1280.jpg',
-      price: 4900,
-      userId: 'qsomihvqios',
-    },
-    {
-      _id: 'oeihfzeomoihi',
-      title: 'Mon deuxième objet',
-      description: 'Les infos de mon deuxième objet',
-      imageUrl: 'https://cdn.pixabay.com/photo/2019/06/11/18/56/camera-4267692_1280.jpg',
-      price: 2900,
-      userId: 'qsomihvqios',
-    },
-  ];
-  res.status(200).json(products);
-});
 
+<<<<<<< HEAD
+// middleware qui intercepte toutes les requêtes qui ont comme Content-Type  application/json pour le mettre leur body dans l'objet req
+app.use(express.json());
+
+// CRUD importé du dossier ROUTES et Modification enregistré dans notre base de donnée
+
+app.use('/api/sauces', sauceRoutes);
+
+app.use('/api/auth', userRoutes);
+
+/******* 
+alternative à express.json
+app.use(bodyParser.json()); 
+********/
+
+// on exporte l'app pour y accéder depuis les autres fichier du projet
+module.exports = app;
+=======
 //on exporte l'app pour y accéder depuis les autres fichier du projet
 module.exports = app;
+>>>>>>> adbc15c9ecc07d458bf5e5e818f0cac8d28de80c
