@@ -1,10 +1,11 @@
+require('dotenv').config();
 // On importe express
 const express = require('express');
 // On creer l'application à l'aide d'express
 const app = express();
 
 const mongoose = require('mongoose');
-
+const path = require('path');
 // alternative à express.json
 // const bodyParser = require('body-parser'); 
 
@@ -12,7 +13,7 @@ const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 /* MONGODB */
-<<<<<<< HEAD
+mongoose.connect(process.env.DATABASE_URI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -20,16 +21,6 @@ const userRoutes = require('./routes/user');
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-=======
-const { MongoClient, ServerApiVersion } = require('mongodb');
-
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-client.connect(err => {
-  const collection = client.db("Cluster0").collection("piquante");
-  // perform actions on the collection object
-  client.close();
-});
->>>>>>> adbc15c9ecc07d458bf5e5e818f0cac8d28de80c
 //Middleware  : réponse pour n'importe quelle requête
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -38,7 +29,6 @@ app.use((req, res, next) => {
   next();
 });
 
-<<<<<<< HEAD
 // middleware qui intercepte toutes les requêtes qui ont comme Content-Type  application/json pour le mettre leur body dans l'objet req
 app.use(express.json());
 
@@ -52,13 +42,7 @@ app.use('/api/auth', userRoutes);
 alternative à express.json
 app.use(bodyParser.json()); 
 ********/
+app.use('images', express.static(path.join(__dirname, 'images')));
 
 // on exporte l'app pour y accéder depuis les autres fichier du projet
 module.exports = app;
-=======
-//on exporte l'app pour y accéder depuis les autres fichier du projet
-module.exports = app;
-<<<<<<< HEAD
->>>>>>> adbc15c9ecc07d458bf5e5e818f0cac8d28de80c
-=======
->>>>>>> adbc15c9ecc07d458bf5e5e818f0cac8d28de80c
