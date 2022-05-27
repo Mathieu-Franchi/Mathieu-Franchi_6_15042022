@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
     try { //methode split creer un tableau sur une chaine de caractère et sépare les elements entre les espaces
-        const token = req.headers.authorization.split('')[1];
+        const token = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
         const userId = decodedToken.userId;
         req.auth = { userId };
@@ -17,4 +17,4 @@ module.exports = (req, res, next) => {
     catch (error) {
         res.status(401).json({error: error | 'Requête non authentifiée !'});
     }
-}
+};

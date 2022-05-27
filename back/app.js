@@ -13,10 +13,10 @@ const mongoose = require('mongoose');
 // import path : pour accéder au chemin d'un dossier statique (ici sur notre pc)
 const path = require('path');
 
-/******
+
 // alternative à express.json
-const bodyParser = require('body-parser'); 
-******/
+// const bodyParser = require('body-parser'); 
+
 
 // import les routes à l'aide du routeur exporté dans les fichiers routes
 const sauceRoutes = require('./routes/sauce');
@@ -39,10 +39,10 @@ app.use((req, res, next) => {
   next();
 });
 
-/******* 
-alternative à express.json
-app.use(bodyParser.json()); 
-********/
+
+//alternative à express.json
+// app.use(bodyParser.json()); 
+
 
 // middleware qui intercepte toutes les requêtes qui ont comme Content-Type  application/json pour mettre leur body dans l'objet req
 app.use(express.json());
@@ -52,11 +52,11 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 /* CRUD importé du dossier ROUTES et Modification enregistré dans notre base de donnée */
 
+//User
+app.use('/api/auth', userRoutes);
 //Sauce
 app.use('/api/sauces', sauceRoutes);
 
-//User
-app.use('/api/auth', userRoutes);
 
 // on exporte l'app pour y accéder depuis les autres fichier du projet
 module.exports = app;

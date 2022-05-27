@@ -4,6 +4,7 @@ const fs = require('fs');
 //post
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
+    
     //delete le faux _id envoyé par le front-end
     delete sauceObject._id;
     //creer une nouvelle sauce par rrouterort aux champs recupérer dans le corps de la req
@@ -52,3 +53,9 @@ exports.getAllSauces = (req, res, next) => {
         .then(sauces => res.status(200).json(sauces))
         .catch(error => res.status(400).json({ error }));
 };
+
+//POST LIKE/DISLIKE
+// exports.likeDislikeSauces = (req, res, next) => {
+
+
+// };
