@@ -1,3 +1,4 @@
+//import json.web.token
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
@@ -6,6 +7,7 @@ module.exports = (req, res, next) => {
         const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
         const userId = decodedToken.userId;
         req.auth = { userId };
+        //si on a un userId dans le corps de la requête et qu'il est différent du userId decodé
         if (req.body.userId && req.body.userId !== userId){
             throw 'User ID non valable !';
 

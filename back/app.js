@@ -50,7 +50,7 @@ app.use(express.json());
 //middleware : permet les requête sur notre dossier statique "images" (sur notre pc) en donnant le chemin du dossier grâce à "path"
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-/* CRUD importé du dossier ROUTES et Modification enregistré dans notre base de donnée */
+/* CRUD importé du dossier ROUTES  */
 
 //User
 app.use('/api/auth', userRoutes);

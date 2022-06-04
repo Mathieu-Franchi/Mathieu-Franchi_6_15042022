@@ -21,6 +21,9 @@ router.get('/:id', auth, sauceCtrl.getOneSauce);
 
 //réponse pour requête de type get all
 router.get('/', auth, sauceCtrl.getAllSauces);
+
+//POST : like/dislike
+router.post("/:id/like", auth, sauceCtrl.likeSauces);
   
   
 //on exporte le router pour y accéder depuis les autres fichier du projet
